@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Example</string>
+    <string name="stop_message">&lt;b>Stop&lt;/b>. %1$s</string>
+    <plurals name="unicorn_count">
+        <item quantity="one">One unicorn</item>
+        <item quantity="other">%d unicorns</item>
+    </plurals>
+</resources>
