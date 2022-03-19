@@ -1,14 +1,23 @@
 package com.professionalandroid.apps.earthquake;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,11 +25,22 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.ExistingWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class EarthquakeListFragment extends Fragment {
+    private static final String TAG = "EarthquakeListFragment";
 
     private ArrayList<Earthquake> mEarthquakes = new ArrayList<>();
 
@@ -54,6 +74,7 @@ public class EarthquakeListFragment extends Fragment {
     }
 
     private OnListFragmentInteractionListener mListener;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -145,4 +166,6 @@ public class EarthquakeListFragment extends Fragment {
         mMinimumMagnitude = Integer.parseInt(
                 prefs.getString(PreferencesActivity.PREF_MIN_MAG, "3"));
     }
+
+
 }

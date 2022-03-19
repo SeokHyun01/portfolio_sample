@@ -22,7 +22,7 @@ public interface EarthquakeDAO {
     @Delete
     public void deleteEarthquake(Earthquake earthquake);
 
-    @Query("SELECT * FROM earthquake ORDER BY mDate DESC")
+    @Query("SELECT * FROM Earthquake ORDER BY mDate DESC")
     public LiveData<List<Earthquake>> loadAllEarthquakes();
 
     @Query("SELECT mId as _id, " +
@@ -44,4 +44,7 @@ public interface EarthquakeDAO {
             "WHERE mId = :id " +
             "LIKE 1")
     public LiveData<Earthquake> getEarthquake(String id);
+
+    @Query("SELECT * FROM Earthquake ORDER BY mDate DESC")
+    List<Earthquake> loadAllEarthquakesBlocking();
 }
